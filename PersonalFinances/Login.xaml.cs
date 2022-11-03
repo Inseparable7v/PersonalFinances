@@ -15,10 +15,6 @@ namespace PersonalFinances
         {
             InitializeComponent();
         }
-        public void Close()
-        {
-            this.Close();
-        }
         Registration registration = new Registration();
         //Welcome welcome = new Welcome();
         private void button1_Click(object sender, RoutedEventArgs e)

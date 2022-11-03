@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -29,7 +30,7 @@ namespace PersonalFinances
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             Login login = new Login();
-            //login.Show();
+            login.Show();
             Close();
         }
         private void button2_Click(object sender, RoutedEventArgs e)
@@ -46,10 +47,10 @@ namespace PersonalFinances
             passwordBoxConfirm.Password = "";
         }
 
-        public void Close()
-        {
-            this.Close();
-        }
+        //public void Close()
+        //{
+        //    this.Close();
+        //}
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
@@ -96,9 +97,9 @@ namespace PersonalFinances
                     user.LastName = lastname;
                     user.Password = password;
 
-                    //errormessage.Text = "";
-                    //string address = textBoxAddress.Text;
-                    //SqlConnection con = new SqlConnection("Data Source=TESTPURU;Initial Catalog=Data;User ID=sa;Password=wintellect");
+                    errormessage.Text = "";
+                    string address = textBoxAddress.Text;
+                    SqlConnection con = new SqlConnection("Data Source=TESTPURU;Initial Catalog=Data;User ID=sa;Password=wintellect");
                     //con.Open();
                     //SqlCommand cmd = new SqlCommand("Insert into Registration (FirstName,LastName,Email,Password,Address) values('" + firstname + "','" + lastname + "','" + email + "','" + password + "','" + address + "')", con);
                     //cmd.CommandType = CommandType.Text;
