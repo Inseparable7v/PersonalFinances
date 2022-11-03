@@ -15,7 +15,7 @@ namespace PersonalFinances
         {
             InitializeComponent();
         }
-        Registration registration = new Registration();
+        Registration registration = new();
         //Welcome welcome = new Welcome();
         private void button1_Click(object sender, RoutedEventArgs e)
         {

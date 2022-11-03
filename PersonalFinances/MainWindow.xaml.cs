@@ -29,7 +29,7 @@ namespace PersonalFinances
         }
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            Login login = new Login();
+            var login = new Login();
             login.Show();
             Close();
         }
