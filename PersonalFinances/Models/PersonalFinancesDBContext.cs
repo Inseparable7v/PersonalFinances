@@ -22,6 +22,7 @@ namespace PersonalFinances.Models
         public virtual DbSet<ProjectStatus> ProjectStatuses { get; set; }
         public virtual DbSet<ProjectTask> ProjectTasks { get; set; }
         public virtual DbSet<TaskStatus> TaskStatuses { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

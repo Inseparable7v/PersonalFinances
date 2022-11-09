@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonalFinances.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace PersonalFinances
     public partial class MainWindow : Window
     {
         private User user;
+        private PersonalFinancesDBContext context;
         public MainWindow()
         {
             InitializeComponent();
@@ -47,17 +49,13 @@ namespace PersonalFinances
             passwordBoxConfirm.Password = "";
         }
 
-        //public void Close()
-        //{
-        //    this.Close();
-        //}
-
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
+
             if (textBoxEmail.Text.Length == 0)
             {
                 errormessage.Text = "Enter an email.";
@@ -71,10 +69,12 @@ namespace PersonalFinances
             }
             else
             {
-                string firstname = textBoxFirstName.Text;
-                string lastname = textBoxLastName.Text;
-                string email = textBoxEmail.Text;
-                string password = passwordBox1.Password;
+                context = new PersonalFinancesDBContext();
+                user = new User();
+                var firstname = textBoxFirstName.Text;
+                var lastname = textBoxLastName.Text;
+                var email = textBoxEmail.Text;
+                var password = passwordBox1.Password;
                 if (passwordBox1.Password.Length == 0)
                 {
                     errormessage.Text = "Enter password.";
@@ -96,16 +96,16 @@ namespace PersonalFinances
                     user.FirstName = firstname;
                     user.LastName = lastname;
                     user.Password = password;
+                    user.IdentificationNumber = 0048572019;
+                    user.Phone = 008765120;
+                    user.SurrName = "Peshovec";
 
                     errormessage.Text = "";
-                    string address = textBoxAddress.Text;
-                    SqlConnection con = new SqlConnection("Data Source=TESTPURU;Initial Catalog=Data;User ID=sa;Password=wintellect");
-                    //con.Open();
-                    //SqlCommand cmd = new SqlCommand("Insert into Registration (FirstName,LastName,Email,Password,Address) values('" + firstname + "','" + lastname + "','" + email + "','" + password + "','" + address + "')", con);
-                    //cmd.CommandType = CommandType.Text;
-                    //cmd.ExecuteNonQuery();
-                    //con.Close();
-                    //errormessage.Text = "You have Registered successfully.";
+                    var address = textBoxAddress.Text;
+
+                    context.Add(user);
+                    context.SaveChangesAsync();
+                    errormessage.Text = "You have Registered successfully.";
                     Reset();
                 }
             }

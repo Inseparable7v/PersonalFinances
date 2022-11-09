@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
+using PersonalFinances.Models;
 
 namespace PersonalFinances
 {
@@ -15,7 +16,8 @@ namespace PersonalFinances
         {
             InitializeComponent();
         }
-        Registration registration = new();
+        MainWindow registration = new();
+        PersonalFinancesDBContext context = new();
         //Welcome welcome = new Welcome();
         private void button1_Click(object sender, RoutedEventArgs e)
         {
@@ -32,8 +34,16 @@ namespace PersonalFinances
             }
             else
             {
-                //string email = textBoxEmail.Text;
-                //string password = passwordBox1.Password;
+                var email = textBoxEmail.Text;
+                var password = passwordBox1.Password;
+                if (context.User.Any(u => u.Password == password && u.Email == email))
+                {
+                  
+                }
+                else
+                {
+                    errormessage.Text = "Sorry! Please enter existing emailid/password.";
+                }
                 //SqlConnection con = new SqlConnection("Data Source=TESTPURU;Initial Catalog=Data;User ID=sa;Password=wintellect");
                 //con.Open();
                 //SqlCommand cmd = new SqlCommand("Select * from Registration where Email='" + email + "'  and password='" + password + "'", con);
@@ -58,7 +68,7 @@ namespace PersonalFinances
         }
         private void buttonRegister_Click(object sender, RoutedEventArgs e)
         {
-            //registration.Show();
+            registration.Show();
             Close();
         }
     }
