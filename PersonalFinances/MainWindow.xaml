@@ -10,7 +10,7 @@
                 <GradientStop Color="#FF00B9FF" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="Login_Click" Content="Login" HorizontalAlignment="Left" Margin="203,103,0,0" VerticalAlignment="Top" Click="Login_Click" Width="56" Foreground="White">
+        <Button x:Name="Login" Content="Login" HorizontalAlignment="Left" Margin="203,103,0,0" VerticalAlignment="Top" Click="Login_Click" Width="56" Foreground="White">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFDCEDF0" Offset="0"/>

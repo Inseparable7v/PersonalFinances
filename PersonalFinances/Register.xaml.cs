@@ -31,18 +31,13 @@ namespace PersonalFinances
         {
             var login = new Login();
             login.Show();
-            Close();
-        }
-
-        private void Close()
-        {
             this.Close();
         }
-
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
             Reset();
         }
+
         public void Reset()
         {
             textBoxFirstName.Text = "";
@@ -57,6 +52,7 @@ namespace PersonalFinances
         {
             this.Close();
         }
+
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
 
