@@ -28,6 +28,14 @@
         </Button>
         <Label Content="Note: Please login to view the features of this site. If you are new on this site then&#xD;&#xA;please click on Register button&#xD;&#xA;" HorizontalAlignment="Center" Height="46" Margin="0,46,0,0" VerticalAlignment="Top" Width="495"/>
         <Label Content="OR" HorizontalAlignment="Left" Height="20" Margin="259,103,0,0" VerticalAlignment="Top" Width="23" HorizontalContentAlignment="Center" FontSize="9" Foreground="#FF00B9FF"/>
+        <Button x:Name="SearchClient" Content="SearchClient" HorizontalAlignment="Left" Margin="106,145,0,0" VerticalAlignment="Top" Click="SearchClient_Click" Width="93" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFDCEDF0" Offset="0"/>
+                    <GradientStop Color="#FF137DE6" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>  

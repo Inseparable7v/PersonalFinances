@@ -39,5 +39,11 @@ namespace PersonalFinances
             var register = new Register();
             register.Show();
         }
+
+        private void SearchClient_Click(object sender, RoutedEventArgs e)
+        {
+            var searchClient = new SearchClient();
+            searchClient.Show();
+        }
     }
 }

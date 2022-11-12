@@ -17,25 +17,221 @@ namespace PersonalFinances.Models
         {
         }
 
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<Dossier> Dossiers { get; set; }
+        public virtual DbSet<DossierDetail> DossierDetails { get; set; }
         public virtual DbSet<Expert> Experts { get; set; }
+        public virtual DbSet<IncomeExpnece> IncomeExpneces { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectStatus> ProjectStatuses { get; set; }
         public virtual DbSet<ProjectTask> ProjectTasks { get; set; }
         public virtual DbSet<TaskStatus> TaskStatuses { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-HA3KM96\\SQLEXPRESS;Database=PersonalFinancesDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-GKF28RV\\MSSQLSERVER01;Database=PersonalFinancesDB;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
+
+            modelBuilder.Entity<Address>(entity =>
+            {
+                entity.ToTable("ADDRESS");
+
+                entity.HasIndex(e => new { e.ClientId, e.AddressType }, "IDX_ADDRESS_UQ")
+                    .IsUnique();
+
+                entity.Property(e => e.AddressId)
+                    .HasColumnType("numeric(18, 0)")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ADDRESS_ID");
+
+                entity.Property(e => e.AddresMunicipality)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("ADDRES_MUNICIPALITY");
+
+                entity.Property(e => e.AddressPcode)
+                    .IsRequired()
+                    .HasMaxLength(4)
+                    .IsUnicode(false)
+                    .HasColumnName("ADDRESS_PCODE");
+
+                entity.Property(e => e.AddressPlace)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("ADDRESS_PLACE");
+
+                entity.Property(e => e.AddressRegion)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("ADDRESS_REGION");
+
+                entity.Property(e => e.AddressText)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("ADDRESS_TEXT");
+
+                entity.Property(e => e.AddressType)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("ADDRESS_TYPE")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.ClientId)
+                    .HasColumnType("numeric(18, 0)")
+                    .HasColumnName("CLIENT_ID");
+
+                entity.HasOne(d => d.Client)
+                    .WithMany(p => p.Addresses)
+                    .HasForeignKey(d => d.ClientId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ADDRESS_REFERENCE_CLIENT");
+            });
+
+            modelBuilder.Entity<Client>(entity =>
+            {
+                entity.ToTable("CLIENT");
+
+                entity.HasIndex(e => e.ClientEgn, "IDX_CLIENT_UQ")
+                    .IsUnique();
+
+                entity.Property(e => e.ClientId)
+                    .HasColumnType("numeric(18, 0)")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("CLIENT_ID");
+
+                entity.Property(e => e.ClientEgn)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("CLIENT_EGN");
+
+                entity.Property(e => e.ClientEmail)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("CLIENT_EMAIL");
+
+                entity.Property(e => e.ClientLastname)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("CLIENT_LASTNAME");
+
+                entity.Property(e => e.ClientName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("CLIENT_NAME");
+
+                entity.Property(e => e.ClientPhone)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("CLIENT_PHONE");
+
+                entity.Property(e => e.ClientSurname)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("CLIENT_SURNAME");
+            });
+
+            modelBuilder.Entity<Dossier>(entity =>
+            {
+                entity.HasKey(e => e.DossierNo);
+
+                entity.ToTable("DOSSIER");
+
+                entity.HasIndex(e => new { e.ClientId, e.DossierYear }, "IDX_DOSSIER_UQ")
+                    .IsUnique();
+
+                entity.Property(e => e.DossierNo)
+                    .HasColumnType("numeric(18, 0)")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("DOSSIER_NO");
+
+                entity.Property(e => e.ClientId)
+                    .HasColumnType("numeric(18, 0)")
+                    .HasColumnName("CLIENT_ID");
+
+                entity.Property(e => e.DossierMinBalance)
+                    .HasColumnType("numeric(10, 2)")
+                    .HasColumnName("DOSSIER_MIN_BALANCE");
+
+                entity.Property(e => e.DossierStatus)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("DOSSIER_STATUS")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.DossierYear)
+                    .HasColumnType("numeric(18, 0)")
+                    .HasColumnName("DOSSIER_YEAR");
+
+                entity.HasOne(d => d.Client)
+                    .WithMany(p => p.Dossiers)
+                    .HasForeignKey(d => d.ClientId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DOSSIER_REFERENCE_CLIENT");
+            });
+
+            modelBuilder.Entity<DossierDetail>(entity =>
+            {
+                entity.HasKey(e => e.DdId);
+
+                entity.ToTable("DOSSIER_DETAILS");
+
+                entity.Property(e => e.DdId)
+                    .HasColumnType("numeric(18, 0)")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("DD_ID");
+
+                entity.Property(e => e.DdDate)
+                    .HasColumnType("date")
+                    .HasColumnName("DD_DATE");
+
+                entity.Property(e => e.DdDoc)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("DD_DOC");
+
+                entity.Property(e => e.DdValue)
+                    .HasColumnType("numeric(10, 2)")
+                    .HasColumnName("DD_VALUE");
+
+                entity.Property(e => e.DossierNo)
+                    .HasColumnType("numeric(18, 0)")
+                    .HasColumnName("DOSSIER_NO");
+
+                entity.Property(e => e.IncexpId)
+                    .HasColumnType("numeric(18, 0)")
+                    .HasColumnName("INCEXP_ID");
+
+                entity.HasOne(d => d.DossierNoNavigation)
+                    .WithMany(p => p.DossierDetails)
+                    .HasForeignKey(d => d.DossierNo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DOSSIER__REFERENCE_DOSSIER");
+
+                entity.HasOne(d => d.Incexp)
+                    .WithMany(p => p.DossierDetails)
+                    .HasForeignKey(d => d.IncexpId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DOSSIER__REFERENCE_INCOME_E");
+            });
 
             modelBuilder.Entity<Expert>(entity =>
             {
@@ -70,12 +266,42 @@ namespace PersonalFinances.Models
                     .IsFixedLength(true);
             });
 
+            modelBuilder.Entity<IncomeExpnece>(entity =>
+            {
+                entity.HasKey(e => e.IncexpId);
+
+                entity.ToTable("INCOME_EXPNECE");
+
+                entity.HasIndex(e => new { e.IncexpName, e.IncexpType }, "IDX_INCOME_EXPENCE_UQ")
+                    .IsUnique();
+
+                entity.Property(e => e.IncexpId)
+                    .HasColumnType("numeric(18, 0)")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("INCEXP_ID");
+
+                entity.Property(e => e.IncexpName)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("INCEXP_NAME");
+
+                entity.Property(e => e.IncexpType)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("INCEXP_TYPE")
+                    .IsFixedLength(true);
+            });
+
             modelBuilder.Entity<Project>(entity =>
             {
                 entity.ToTable("PROJECTS");
 
                 entity.HasIndex(e => e.ProjectName, "IDX_PROJECT_UQ")
                     .IsUnique();
+
+                entity.HasIndex(e => e.ProjectStatus, "IX_PROJECTS_PROJECT_STATUS");
 
                 entity.Property(e => e.ProjectId)
                     .HasColumnType("numeric(18, 0)")
@@ -150,6 +376,10 @@ namespace PersonalFinances.Models
 
                 entity.HasIndex(e => new { e.ProjectId, e.TaskName }, "IDX_PROJECT_TASK")
                     .IsUnique();
+
+                entity.HasIndex(e => e.ExpretId, "IX_PROJECT_TASKS_EXPRET_ID");
+
+                entity.HasIndex(e => e.TaskStatus, "IX_PROJECT_TASKS_TASK_STATUS");
 
                 entity.Property(e => e.TaskId)
                     .HasColumnType("numeric(18, 0)")
@@ -244,6 +474,11 @@ namespace PersonalFinances.Models
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("STATUS_NAME");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("User");
             });
 
             OnModelCreatingPartial(modelBuilder);

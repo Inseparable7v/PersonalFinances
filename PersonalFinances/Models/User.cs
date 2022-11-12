@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PersonalFinances
+#nullable disable
+
+namespace PersonalFinances.Models
 {
-    public class User
+    public partial class User
     {
-        public User()
-        {
-             
-        }
         public int UserId { get; set; }
         public string FirstName { get; set; }
         public string SurrName { get; set; }
