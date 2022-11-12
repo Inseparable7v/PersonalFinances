@@ -16,9 +16,8 @@ namespace PersonalFinances
         {
             InitializeComponent();
         }
-        MainWindow registration = new();
+        Register registration = new();
         PersonalFinancesDBContext context = new();
-        //Welcome welcome = new Welcome();
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             if (textBoxEmail.Text.Length == 0)
@@ -44,6 +43,8 @@ namespace PersonalFinances
                 {
                     errormessage.Text = "Sorry! Please enter existing emailid/password.";
                 }
+
+
                 //SqlConnection con = new SqlConnection("Data Source=TESTPURU;Initial Catalog=Data;User ID=sa;Password=wintellect");
                 //con.Open();
                 //SqlCommand cmd = new SqlCommand("Select * from Registration where Email='" + email + "'  and password='" + password + "'", con);
