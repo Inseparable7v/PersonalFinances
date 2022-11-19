@@ -35,7 +35,7 @@ namespace PersonalFinances
             {
                 var email = textBoxEmail.Text;
                 var password = passwordBox1.Password;
-                if (context.User.Any(u => u.Password == password && u.Email == email))
+                if (context.Users.Any(u => u.Password == password && u.Email == email))
                 {
                   
                 }

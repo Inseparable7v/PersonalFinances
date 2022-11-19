@@ -16,6 +16,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.Data.Sql;
 using System.Data;
+using PersonalFinances.Models;
 
 namespace PersonalFinances
 {
@@ -28,6 +29,7 @@ namespace PersonalFinances
         {
             InitializeComponent();
         }
+        PersonalFinancesDBContext context = new();
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -36,13 +38,16 @@ namespace PersonalFinances
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            var Name = nameTextBox.Text;
+            var EGN = egnTextBox.Text;
+            var Email = emailTextBox.Text;
+            var Phone = phoneTextBox.Text;
+            dataGridView.ItemsSource = context.Clients.Where(c => c.ClientName == Name || c.ClientEgn == EGN || c.ClientEmail == Email || c.ClientPhone == Phone).ToList();
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataTable dt = new DataTable();
-            dataGridView.DataContext = dt;
+
         }
     }
 }
