@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalFinances.Models;
 
 namespace PersonalFinances.Migrations
 {
     [DbContext(typeof(PersonalFinancesDBContext))]
-    partial class PersonalFinancesDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221119144203_PersonalFinances")]
+    partial class PersonalFinances
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
