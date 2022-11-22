@@ -21,7 +21,9 @@ namespace PersonalFinances
     /// </summary>
     public partial class Register : Window
     {
-        private User user;
+        private Address address;
+        private Dossier dossier;
+        private Client client;
         private PersonalFinancesDBContext context;
         public Register()
         {
@@ -31,7 +33,6 @@ namespace PersonalFinances
         {
             var login = new Login();
             login.Show();
-            this.Close();
         }
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
@@ -41,11 +42,16 @@ namespace PersonalFinances
         public void Reset()
         {
             textBoxFirstName.Text = "";
+            textBoxSurrName.Text = "";
             textBoxLastName.Text = "";
             textBoxEmail.Text = "";
-            textBoxAddress.Text = "";
-            passwordBox1.Password = "";
-            passwordBoxConfirm.Password = "";
+            textBoxAddressMunicipality.Text = "";
+            textBoxAddressPCode.Text = "";
+            textBoxAddressPlace.Text = "";
+            textBoxAddressRegion.Text = "";
+            textBoxAddressType.Text = "";
+            textBoxAddressText.Text = "";
+            textBoxEGN.Text = "";
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -55,6 +61,9 @@ namespace PersonalFinances
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
+            var r = new Random();
+            var randomIntDossierNumber = r.Next(0, 1000);
+
 
             if (textBoxEmail.Text.Length == 0)
             {
@@ -70,43 +79,55 @@ namespace PersonalFinances
             else
             {
                 context = new PersonalFinancesDBContext();
-                user = new User();
-                var firstname = textBoxFirstName.Text;
-                var lastname = textBoxLastName.Text;
+                client = new Client();
+                address = new Address();
+                dossier = new Dossier();
+
+
+                var firstName = textBoxFirstName.Text;
+                var lastName = textBoxLastName.Text;
+                var surrName = textBoxSurrName.Text;
                 var email = textBoxEmail.Text;
-                var password = passwordBox1.Password;
-                if (passwordBox1.Password.Length == 0)
-                {
-                    errormessage.Text = "Enter password.";
-                    passwordBox1.Focus();
-                }
-                else if (passwordBoxConfirm.Password.Length == 0)
-                {
-                    errormessage.Text = "Enter Confirm password.";
-                    passwordBoxConfirm.Focus();
-                }
-                else if (passwordBox1.Password != passwordBoxConfirm.Password)
-                {
-                    errormessage.Text = "Confirm password must be same as password.";
-                    passwordBoxConfirm.Focus();
-                }
-                else
-                {
-                    user.Email = email;
-                    user.FirstName = firstname;
-                    user.LastName = lastname;
-                    user.Password = password;
-                    user.IdentificationNumber = 0048572019;
-                    user.Phone = 008765120;
-                    user.SurrName = "Peshovec";
+                var egn = textBoxEGN.Text;
+                var addressType = textBoxAddressType.Text;
+                var addressRegion = textBoxAddressRegion.Text;
+                var addressPlace = textBoxAddressPlace.Text;
+                var addressPCode = textBoxAddressPCode.Text;
+                var addressText = textBoxAddressText.Text;
+                var addressMunicipality = textBoxAddressMunicipality.Text;
+                var phone = textBoxPhone.Text;
 
-                    errormessage.Text = "";
+                dossier.DossierNo = randomIntDossierNumber;
+                var randomIntDossierBalance = r.Next(0, 5000);
+                dossier.DossierMinBalance = randomIntDossierBalance;
+                dossier.DossierYear = new DateTime().Year;
 
-                    context.Add(user);
-                    context.SaveChangesAsync();
-                    errormessage.Text = "You have Registered successfully.";
-                    Reset();
-                }
+                client.ClientEmail = email;
+                client.ClientName = firstName;
+                client.ClientLastname = lastName;
+                client.ClientEgn = egn;
+                client.ClientPhone = phone;
+                client.ClientSurname = surrName;
+                address.AddressPcode = addressPCode;
+                address.AddressPlace = addressPlace;
+                address.AddressRegion = addressRegion;
+                address.AddressText = addressText;
+                address.AddressType = addressType;
+                address.AddresMunicipality = addressMunicipality;
+                client.Addresses.Add(address);
+                errormessage.Text = "";
+                context.Add(client);
+                context.SaveChanges();
+
+                var clientId = context.Clients.FirstOrDefault(c => c.ClientEgn == egn).ClientId;
+                address.ClientId = clientId;
+                dossier.ClientId = clientId;
+                context.Add(address);
+                context.Add(dossier);
+                context.SaveChangesAsync();
+                errormessage.Text = "You have Registered successfully.";
+                Login_Click(sender, e);
+                Reset();
             }
         }
     }
