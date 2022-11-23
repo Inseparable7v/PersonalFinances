@@ -45,5 +45,17 @@ namespace PersonalFinances
             var searchClient = new SearchClient();
             searchClient.Show();
         }
+
+        private void SearchDossier_Click(object sender, RoutedEventArgs e)
+        {
+            var searchDossier = new DossierSearch();
+            searchDossier.Show();
+        }
+
+        private void AddDossier_Click(object sender, RoutedEventArgs e)
+        {
+            var addDossier = new AddDossier();
+            addDossier.Show();
+        }
     }
 }
