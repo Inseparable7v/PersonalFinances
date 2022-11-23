@@ -102,18 +102,9 @@ namespace PersonalFinances
                 dossier.DossierMinBalance = randomIntDossierBalance;
                 dossier.DossierYear = new DateTime().Year;
 
-                client.ClientEmail = email;
-                client.ClientName = firstName;
-                client.ClientLastname = lastName;
-                client.ClientEgn = egn;
-                client.ClientPhone = phone;
-                client.ClientSurname = surrName;
-                address.AddressPcode = addressPCode;
-                address.AddressPlace = addressPlace;
-                address.AddressRegion = addressRegion;
-                address.AddressText = addressText;
-                address.AddressType = addressType;
-                address.AddresMunicipality = addressMunicipality;
+                SetClient(firstName, lastName, surrName, email, egn, phone,
+                    addressPCode, addressMunicipality, addressType, addressText, addressRegion, addressPlace);
+
                 client.Addresses.Add(address);
                 errormessage.Text = "";
                 context.Add(client);
@@ -129,6 +120,25 @@ namespace PersonalFinances
                 Login_Click(sender, e);
                 Reset();
             }
+        }
+
+        private void SetClient(string firstName,string lastName, string surrName,
+            string email, string egn, string phone, string addressPCode,
+            string addressMunicipality, string addressType, string addressText,
+            string addressRegion, string addressPlace)
+        {
+            client.ClientEmail = email;
+            client.ClientName = firstName;
+            client.ClientLastname = lastName;
+            client.ClientEgn = egn;
+            client.ClientPhone = phone;
+            client.ClientSurname = surrName;
+            address.AddressPcode = addressPCode;
+            address.AddressPlace = addressPlace;
+            address.AddressRegion = addressRegion;
+            address.AddressText = addressText;
+            address.AddressType = addressType;
+            address.AddresMunicipality = addressMunicipality;
         }
     }
 }
