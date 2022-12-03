@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonalFinances"
         mc:Ignorable="d"
-        Title="Register" Height="472" Width="835">
-    <Grid Background="Bisque" Margin="138,42,78,7">
+        Title="Register" Height="Auto" Width="Auto">
+    <Grid Background="#FF00B9FF" Margin="78,42,78,25">
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,5,0,0" Name="textBlockHeading" Text="Registration:" VerticalAlignment="Top" Width="110"  FontSize="17" FontStretch="ExtraCondensed"/>
-        <Grid Margin="30,49,10,0" Background="White" Height="348" VerticalAlignment="Top">
+        <Grid Margin="30,49,30,10" Background="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="252*" />
+                <RowDefinition Height="Auto" />
                 <!--   <RowDefinition Height="12*" />-->
             </Grid.RowDefinitions>
             <TextBlock Height="20" HorizontalAlignment="Left" Margin="67,0,0,0" x:Name ="errormessage" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
@@ -41,7 +41,7 @@
             <TextBox Height="23" HorizontalAlignment="Left" Margin="183,0,0,0" Name="textBoxPhone" VerticalAlignment="Center" Width="222" />
             <Button Content="Submit" Height="23" HorizontalAlignment="Left" Margin="130,315,0,0" Name="Submit" VerticalAlignment="Top" Width="70" Click="Submit_Click" />
             <Button Content="Reset" Height="23" HorizontalAlignment="Left" Margin="259,315,0,0" Name="button2" VerticalAlignment="Top" Width="70" Click="Reset_Click" />
-            <Button Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="381,315,0,0" Name="button3" VerticalAlignment="Top" Width="70" Click="Close_Click" />
+            <Button Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="381,315,0,15" Name="button3" VerticalAlignment="Top" Width="70" Click="Close_Click" />
         </Grid>
     </Grid>
 </Window>

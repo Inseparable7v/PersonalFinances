@@ -35,6 +35,9 @@ namespace PersonalFinances
             // todo
             //context.Dossiers.Add(new Dossier());
         }
+        private void OnTextBoxTextChanged(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

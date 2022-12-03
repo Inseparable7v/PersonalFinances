@@ -16,9 +16,10 @@ namespace PersonalFinances
         {
             InitializeComponent();
         }
+
         Register registration = new();
         PersonalFinancesDBContext context = new();
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void NextTry(object sender, RoutedEventArgs e)
         {
             if (textBoxEmail.Text.Length == 0)
             {
@@ -34,10 +35,13 @@ namespace PersonalFinances
             else
             {
                 var email = textBoxEmail.Text;
-                var password = passwordBox1.Password;
-                if (context.Users.Any(u => u.Password == password && u.Email == email))
+                var egn = egnBox.Password;
+                if (context.Clients.Any(u => u.ClientEgn == egn && u.ClientEmail == email))
                 {
-                  
+                    var successfullLoginMessage = "You have login succeffullly";
+                    var mainWindow = new MainWindow(successfullLoginMessage);
+                    mainWindow.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -71,6 +75,37 @@ namespace PersonalFinances
         {
             registration.Show();
             Close();
+        }
+
+        private void buttonLogin_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxEmail.Text.Length == 0)
+            {
+                errormessage.Text = "Enter an email.";
+                textBoxEmail.Focus();
+            }
+            else if (!Regex.IsMatch(textBoxEmail.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
+            {
+                errormessage.Text = "Enter a valid email.";
+                textBoxEmail.Select(0, textBoxEmail.Text.Length);
+                textBoxEmail.Focus();
+            }
+            else
+            {
+                var email = textBoxEmail.Text;
+                var egn = egnBox.Password;
+                if (context.Clients.Any(u => u.ClientEgn == egn && u.ClientEmail == email))
+                {
+                    var successfullLoginMessage = "You have login succeffullly";
+                    var mainWindow = new MainWindow(successfullLoginMessage);
+                    mainWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    errormessage.Text = "Sorry! Please enter existing emailid/password.";
+                }
+            }
         }
     }
 }

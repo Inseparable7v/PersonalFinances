@@ -28,6 +28,12 @@ namespace PersonalFinances
             InitializeComponent();
         }
 
+        public MainWindow(string message) : base()
+        {
+            InitializeComponent();
+            LoginHeading.Text = message;
+        }
+
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             var login = new Login();

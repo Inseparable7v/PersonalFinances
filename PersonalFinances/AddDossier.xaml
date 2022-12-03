@@ -14,16 +14,16 @@
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="White"/>
-                <GradientStop Color="#FF0079FF" Offset="1"/>
+                <GradientStop Color="#FF00B9FF" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
         <Grid x:Name="grid" Grid.ColumnSpan="2" Width="800" Height="434" BindingGroup="{Binding DataContext, ElementName=grid}">
 
             <TextBox x:Name="yearTextBox" TextWrapping="Wrap" Height="23" Margin="117,63,380,348" BorderBrush="Black"/>
-            <TextBlock TextWrapping="Wrap" Height="23" Text="Година:" Margin="8,63,708,348" Foreground="Black" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.83,0.623"></TextBlock>
+            <TextBlock TextWrapping="Wrap" Height="23" Text="Year:" Margin="8,63,708,348" Foreground="Black" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.83,0.623"></TextBlock>
 
             <TextBox x:Name="minBalanceTextBox" TextWrapping="Wrap" Height="23" Margin="117,93,0,0" BorderBrush="Black" Width="303" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.518"/>
-            <TextBlock TextWrapping="Wrap" Height="23" Margin="10,95,683,316" Foreground="Black" FontSize="16" FontWeight="Bold"><Run Language="bg-bg" Text="Мин. баланс:"/><LineBreak/><Run Language="bg-bg"/></TextBlock>
+            <TextBlock TextWrapping="Wrap" Height="23" Margin="10,95,683,316" Foreground="Black" FontSize="16" FontWeight="Bold"><Run Language="bg-bg" Text="Min. Balance:"/><LineBreak/><Run Language="bg-bg"/></TextBlock>
             <Button Content="Add" Margin="353,120,372,285" Click="Button_Click" Background="White" BorderBrush="Black">
             </Button>
         </Grid>

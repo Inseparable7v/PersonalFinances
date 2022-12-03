@@ -118,6 +118,7 @@ namespace PersonalFinances
                 context.SaveChangesAsync();
                 errormessage.Text = "You have Registered successfully.";
                 Login_Click(sender, e);
+                Close_Click(sender, e);
                 Reset();
             }
         }
