@@ -12,6 +12,12 @@ namespace PersonalFinances.Models
             DossierDetails = new HashSet<DossierDetail>();
         }
 
+        public Dossier(decimal year, decimal minBalance)
+        {
+            this.DossierYear = year;
+            this.DossierMinBalance = minBalance;
+        }
+
         public decimal DossierNo { get; set; }
         public decimal ClientId { get; set; }
         public decimal DossierYear { get; set; }
