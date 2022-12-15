@@ -29,11 +29,35 @@ namespace PersonalFinances
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var Year = yearTextBox.Text;
-            var MinBalance = minBalanceTextBox.Text;
+            var year = 0m;
+            var minBalance = 0m;
+           
+            Decimal.TryParse(yearTextBox.Text, out year);
+            Decimal.TryParse(minBalanceTextBox.Text, out minBalance);
 
-            // todo
-            //context.Dossiers.Add(new Dossier());
+            Dossier dossier = new Dossier(year, minBalance);
+            dossier.DossierStatus = "O";
+            dossier.ClientId = Global.client.ClientId;
+            
+            try
+            {
+                context.Dossiers.Add(dossier);
+                context.SaveChanges();
+                clearFields();
+                Message.Text = "Successfully added dossier!";
+            } catch (Exception ex)
+            {
+                clearFields();
+                Message.Text = "Error while adding dossier!";
+            }
+
+
+        }
+
+        private void clearFields()
+        {
+            yearTextBox.Text = "";
+            minBalanceTextBox.Text = "";
         }
         private void OnTextBoxTextChanged(object sender, RoutedEventArgs e)
         {

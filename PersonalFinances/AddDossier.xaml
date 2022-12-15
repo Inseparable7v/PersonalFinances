@@ -28,5 +28,7 @@
             </Button>
         </Grid>
 
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="Message" Text="" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed"/>
+
     </Grid>
 </Window>

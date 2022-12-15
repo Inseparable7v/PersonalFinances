@@ -98,6 +98,7 @@ namespace PersonalFinances
                 {
                     var successfullLoginMessage = "You have login succeffully";
                     var mainWindow = new MainWindow(successfullLoginMessage);
+                    Global.client = context.Clients.FirstOrDefault((u => u.ClientEgn == egn && u.ClientEmail == email));
                     mainWindow.Show();
                     this.Close();
                 }
