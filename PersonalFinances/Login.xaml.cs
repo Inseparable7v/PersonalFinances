@@ -96,7 +96,7 @@ namespace PersonalFinances
                 var egn = egnBox.Password;
                 if (context.Clients.Any(u => u.ClientEgn == egn && u.ClientEmail == email))
                 {
-                    var successfullLoginMessage = "You have login succeffullly";
+                    var successfullLoginMessage = "You have login succeffully";
                     var mainWindow = new MainWindow(successfullLoginMessage);
                     mainWindow.Show();
                     this.Close();
