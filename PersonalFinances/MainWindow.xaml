@@ -10,49 +10,41 @@
                 <GradientStop Color="#FF00B9FF" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="Login" Content="Login" HorizontalAlignment="Center" Margin="0,68,0,0" VerticalAlignment="Top" Click="Login_Click" Width="56" Foreground="White">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFDCEDF0" Offset="0"/>
-                    <GradientStop Color="#FF137DE6" Offset="1"/>
+        <Menu Height="32" Name="menu1" VerticalAlignment="Top" BorderThickness="0" Foreground="White" FontSize="16" FontWeight="Bold" Margin="-1,-1,-1,-1">
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FF3A60AD" Offset="0.528" />
+                    <GradientStop Color="#FF6A85D8" Offset="0.01" />
+                    <GradientStop Color="#FF3464C4" Offset="1" />
+                    <GradientStop Color="#FF202E7E" Offset="1" />
                 </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="LoginHeading" Text="" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed"/>
-        <Button x:Name="SearchClient" Content="Search Client" HorizontalAlignment="Left" Margin="106,145,0,0" VerticalAlignment="Top" Click="SearchClient_Click" Width="93" Foreground="White">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFDCEDF0" Offset="0"/>
-                    <GradientStop Color="#FF137DE6" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-
-        <Button x:Name="DossierSearch" Content="Search Dossier" HorizontalAlignment="Left" Margin="106,186,0,0" VerticalAlignment="Top" Click="SearchDossier_Click" Width="93" Foreground="White" Height="22">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFDCEDF0" Offset="0"/>
-                    <GradientStop Color="#FF137DE6" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-
-        <Button x:Name="AddDossier" Content="AddDossier" HorizontalAlignment="Left" Margin="106,228,0,0" VerticalAlignment="Top" Click="AddDossier_Click" Width="93" Foreground="White" Height="22" RenderTransformOrigin="0.522,-0.375">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleY="1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFDCEDF0" Offset="0"/>
-                    <GradientStop Color="#FF137DE6" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-
+            </Menu.Background>
+            <Menu.BitmapEffect>
+                <DropShadowBitmapEffect />
+            </Menu.BitmapEffect>
+            <MenuItem Header="Add Dossier" Click="AddDossier_Click" Foreground="LightGreen">
+                <MenuItem.Icon>
+                    <Image Source="add.png" Width="20" Height="20" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Search Dossier" Foreground="LightYellow" FontSize="16" Click="SearchDossier_Click">
+                <MenuItem.Icon>
+                     <Image Source="dossier.png" Width="20" Height="20" /> 
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Search Client" Foreground="LightCoral" FontSize="16" Click="SearchClient_Click">
+                <MenuItem.Icon>
+                    <Image Source="client.png" Width="20" Height="20" />
+                </MenuItem.Icon>
+                <!--<MenuItem.Background>
+                    <ImageBrush ImageSource="" Stretch="Fill" />
+                </MenuItem.Background>-->
+            </MenuItem>
+            <MenuItem Header="Login" Foreground="LightCyan" FontSize="16" Click="Login_Click" HorizontalAlignment="Right">
+                <MenuItem.Icon>
+                    <Image Source="user.png" Width="20" Height="20" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>  

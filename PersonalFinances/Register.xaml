@@ -3,45 +3,65 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PersonalFinances"
+        xmlns:local="clr-namespace:PersonalFinances" xmlns:i="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core"
         mc:Ignorable="d"
         Title="Register" Height="Auto" Width="Auto">
     <Grid Background="#FF00B9FF" Margin="78,42,78,25">
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,5,0,0" Name="textBlockHeading" Text="Registration:" VerticalAlignment="Top" Width="110"  FontSize="17" FontStretch="ExtraCondensed"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="359*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Height="23" Margin="286,10,287,382" Name="textBlockHeading" Text="Registration:" Width="110"  FontSize="17" FontStretch="ExtraCondensed"/>
         <Grid Margin="30,49,30,10" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <!--   <RowDefinition Height="12*" />-->
+                <RowDefinition Height="12*" />
             </Grid.RowDefinitions>
-            <TextBlock Height="20" HorizontalAlignment="Left" Margin="67,0,0,0" x:Name ="errormessage" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,20,0,0" Name="textBlockFirstname" Text="First Name:" VerticalAlignment="Top" Width="110" />
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,50,0,0" x:Name="textBlockSurrName" Text="Surr Name:" VerticalAlignment="Top" Width="110" />
-            <TextBlock Height="22" HorizontalAlignment="Left" Margin="67,81,0,0" Name="textBlockLastName" Text="Last Name:" VerticalAlignment="Top" Width="110" />
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,108,0,0" Name="textBlockEmailId" Text="Email" VerticalAlignment="Top" Width="110" />
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,137,0,0" Name="textBlockEGN" Text="EGN:" VerticalAlignment="Top" Width="110"  />
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,0,0,0" Name="textBlockPhone" Text="Phone:" VerticalAlignment="Center" Width="110" />
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="165,220,0,0" Name="textBlockAddressRegion" Text="Address Region:" VerticalAlignment="Top" Width="87" />
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,220,0,0" x:Name="textBlockAddressType" Text="Address Type:" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.047,0.405" />
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="371,220,0,0" x:Name="textBlockAddressPlace" Text="Address Place:" VerticalAlignment="Top" Width="80" />
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="6,248,0,0" x:Name="textBlockAddressPcode" VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.047,0.405" ><Run Text="Address PCode:"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="257,249,0,0" x:Name="textBlockAddressText" Text="Address Text:" VerticalAlignment="Top" Width="87" />
-            <TextBlock Height="22" HorizontalAlignment="Left" Margin="91,276,0,0" x:Name="textBlockAddressMunicipality" Text="Address Municipality:" VerticalAlignment="Top" Width="115" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,20,0,0" Name="textBoxFirstName" VerticalAlignment="Top" Width="222" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,50,0,0" x:Name="textBoxSurrName" VerticalAlignment="Top" Width="222" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,80,0,0" Name="textBoxLastName" VerticalAlignment="Top" Width="222" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,108,0,0" Name="textBoxEmail" VerticalAlignment="Top" Width="222" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,135,0,0" Name="textBoxEGN" VerticalAlignment="Top" Width="222" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="257,220,0,0" Name="textBoxAddressRegion" VerticalAlignment="Top" Width="100" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="90,220,0,0" x:Name="textBoxAddressType" VerticalAlignment="Top" Width="64" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="451,220,0,0" x:Name="textBoxAddressPlace" VerticalAlignment="Top" Width="100" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="91,248,0,0" x:Name="textBoxAddressPCode" VerticalAlignment="Top" Width="64" />
-            <TextBox Height="55" HorizontalAlignment="Left" Margin="336,249,0,0" x:Name="textBoxAddressText" VerticalAlignment="Top" Width="199" />
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="211,275,0,0" x:Name="textBoxAddressMunicipality" VerticalAlignment="Top" Width="100" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="359*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left" Margin="8,306,0,10" x:Name ="errormessage" Width="173" OpacityMask="Crimson" Foreground="#FFE5572C" />
+            <TextBlock Margin="10,10,553,321" Name="textBlockFirstname" Text="First Name:" Width="60"/>
+            <TextBlock Height="23" Margin="10,40,553,293" x:Name="textBlockSurrName" Text="Surr Name:" Width="60"/>
+            <TextBlock Height="22" Margin="18,65,567,273" Name="textBlockLastName" Text="Last Name:" Width="60" RenderTransformOrigin="0.202,0.516"/>
+            <TextBlock Height="23" Margin="323,40,262,297" Name="textBlockEmailId" Text="Email" Width="60" />
+            <TextBlock Height="23" Margin="312,64,251,268" Name="textBlockEGN" Text="EGN:" Width="60"/>
+            <TextBlock Height="23" Margin="312,10,251,323" Name="textBlockPhone" Text="Phone:" Width="60" />
+            <TextBlock Height="23" Margin="10,176,526,157" Name="textBlockAddressHRegion" Text="Address Region:" Width="87" RenderTransformOrigin="0.326,0.549" />
+            <TextBlock Height="23" Margin="10,120,533,213" x:Name="textBlockAddressHType" Text="Address Post Code:" Width="102" RenderTransformOrigin="0047,0405" />
+            
+            <TextBlock Height="23" Margin="12,148,531,185" x:Name="textBlockAddressHPlace" Text="Address Place:" Width="80" />
+            <TextBlock Height="23" Margin="10,235,525,98" x:Name="textBlockAddressHText" Text="Address Text:" Width="88" RenderTransformOrigin="1.323,0.007" />
+            <TextBlock Height="22" Margin="10,208,498,126" x:Name="textBlockAddressHMunicipality" Text="Address Municipality:" Width="115" />
+            <TextBlock Height="23" Margin="372,176,164,159" Name="textBlockAddressPRegion" Text="Address Region:" Width="87" RenderTransformOrigin="0.326,0.549" />
+            <TextBlock Height="23" Margin="372,126,171,209" x:Name="textBlockAddressPType" Text="Address Post Code:" Width="102" RenderTransformOrigin="0047,0405" />
+            <TextBlock Height="23" Margin="372,148,171,186" x:Name="textBlockAddressPPlace" Text="Address Place:" Width="80" />
+            <TextBlock Height="23" Margin="368,235,167,100" x:Name="textBlockAddressPText" Text="Address Text:" Width="88" RenderTransformOrigin="1.323,0.007" />
+            <TextBlock Height="22" Margin="372,204,136,132" x:Name="textBlockAddressPMunicipality" Text="Address Municipality:" Width="115" />
+            <Rectangle Width="2" Margin="294,107,328,67" Stroke="LightGray" />
+            <TextBox Height="23" Margin="76,7,327,326" Name="textBoxFirstName" Width="220"/>
+            <TextBox Height="23" Margin="76,35,327,298" Name="textBoxSurrName" Width="220" />
+            <TextBox Height="23" Margin="97,65,348,272" Name="textBoxLastName" Width="220"/>
+            <TextBox Height="23" Margin="392,8,31,324" Name="textBoxPhone" Width="200"/>
+            <TextBox Height="23" Margin="403,37,42,300" Name="textBoxEmail" Width="200"/>
+            <TextBox Height="23" Margin="392,64,31,268" Name="textBoxEGN" Width="200" />
+            <TextBox Height="23" Margin="468,176,55,158" Name="textBoxAddressPRegion" Width="100" />
+            <TextBox Height="23" Margin="485,121,96,214" Name="textBoxAddressPPostCode" Width="64" />
+            <TextBox Height="23" Margin="474,149,69,186" Name="textBoxAddressPPlace" Width="80" />
+            <TextBox Height="55" Margin="443,236,30,67" Name="textBoxAddressPText" Width="150"/>
+            <TextBox Height="23" Margin="492,203,31,132" Name="textBoxAddressPMunicipality" Width="100" />
+            <TextBox Height="23" Margin="102,176,421,157" Name="textBoxAddressHRegion" Width="100" />
+            <TextBox Height="23" Margin="117,121,443,214" Name="textBoxAddressHPostCode" Width="64" />
+            <TextBox Height="23" Margin="102,148,441,185" Name="textBoxAddressHPlace" Width="80" />
+            <TextBox Height="55" Margin="86,236,387,67" Name="textBoxAddressHText" Width="150"/>
+            <TextBox Height="23" Margin="136,208,387,127" Name="textBoxAddressHMunicipality" Width="100" />
             <!--For password-->
-            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,0,0,0" Name="textBoxPhone" VerticalAlignment="Center" Width="222" />
-            <Button Content="Submit" Height="23" HorizontalAlignment="Left" Margin="130,315,0,0" Name="Submit" VerticalAlignment="Top" Width="70" Click="Submit_Click" />
-            <Button Content="Reset" Height="23" HorizontalAlignment="Left" Margin="259,315,0,0" Name="button2" VerticalAlignment="Top" Width="70" Click="Reset_Click" />
-            <Button Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="381,315,0,15" Name="button3" VerticalAlignment="Top" Width="70" Click="Close_Click" />
+            <Button Content="Submit" Height="23" Margin="186,315,367,20" Name="Submit" Width="70" Click="Submit_Click" />
+            <Button Content="Reset" Height="23" Margin="276,315,277,20" Name="button2" Width="70" Click="Reset_Click" />
+            <Button Content="Cancel" Height="23" Margin="366,315,187,20" Name="button3" Width="70" Click="Close_Click" />
+            <TextBlock Height="23" Margin="186,98,358,237" x:Name="homeAddress" Text="Home Address" Width="80" RenderTransformOrigin="0047,0405" />
+            <TextBlock Height="23" Margin="320,98,224,237" x:Name="privateAddress" Text="Private Address" Width="80" RenderTransformOrigin="0047,0405" />
         </Grid>
     </Grid>
 </Window>

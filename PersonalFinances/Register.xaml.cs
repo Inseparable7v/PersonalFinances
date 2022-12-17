@@ -45,12 +45,16 @@ namespace PersonalFinances
             textBoxSurrName.Text = "";
             textBoxLastName.Text = "";
             textBoxEmail.Text = "";
-            textBoxAddressMunicipality.Text = "";
-            textBoxAddressPCode.Text = "";
-            textBoxAddressPlace.Text = "";
-            textBoxAddressRegion.Text = "";
-            textBoxAddressType.Text = "";
-            textBoxAddressText.Text = "";
+            textBoxAddressHMunicipality.Text = "";
+            textBoxAddressHPlace.Text = "";
+            textBoxAddressHRegion.Text = "";
+            textBoxAddressHPostCode.Text = "";
+            textBoxAddressHText.Text = "";
+            textBoxAddressPPlace.Text = "";
+            textBoxAddressPRegion.Text = "";
+            textBoxAddressPPostCode.Text = "";
+            textBoxAddressPText.Text = "";
+            textBoxAddressPMunicipality.Text = "";
             textBoxEGN.Text = "";
         }
 
@@ -80,7 +84,8 @@ namespace PersonalFinances
             {
                 context = new PersonalFinancesDBContext();
                 client = new Client();
-                address = new Address();
+                var homeAddress = new Address();
+                var privateAddress = new Address();
                 dossier = new Dossier();
 
 
@@ -89,12 +94,6 @@ namespace PersonalFinances
                 var surrName = textBoxSurrName.Text;
                 var email = textBoxEmail.Text;
                 var egn = textBoxEGN.Text;
-                var addressType = textBoxAddressType.Text;
-                var addressRegion = textBoxAddressRegion.Text;
-                var addressPlace = textBoxAddressPlace.Text;
-                var addressPCode = textBoxAddressPCode.Text;
-                var addressText = textBoxAddressText.Text;
-                var addressMunicipality = textBoxAddressMunicipality.Text;
                 var phone = textBoxPhone.Text;
 
                 dossier.DossierNo = randomIntDossierNumber;
@@ -102,16 +101,19 @@ namespace PersonalFinances
                 dossier.DossierMinBalance = randomIntDossierBalance;
                 dossier.DossierYear = new DateTime().Year;
 
-                SetClient(firstName, lastName, surrName, email, egn, phone,
-                    addressPCode, addressMunicipality, addressType, addressText, addressRegion, addressPlace);
+                SetClient(firstName, lastName, surrName, email, egn, phone);
+                SetAddress(ref privateAddress, ref homeAddress);
+                SetAddress(ref privateAddress, ref homeAddress);
+                client.Addresses.Add(homeAddress);
+                client.Addresses.Add(privateAddress);
 
-                client.Addresses.Add(address);
                 errormessage.Text = "";
                 context.Add(client);
                 context.SaveChanges();
 
                 var clientId = context.Clients.FirstOrDefault(c => c.ClientEgn == egn).ClientId;
-                address.ClientId = clientId;
+                privateAddress.ClientId = clientId;
+                homeAddress.ClientId = clientId;
                 dossier.ClientId = clientId;
                 context.Add(address);
                 context.Add(dossier);
@@ -123,10 +125,8 @@ namespace PersonalFinances
             }
         }
 
-        private void SetClient(string firstName,string lastName, string surrName,
-            string email, string egn, string phone, string addressPCode,
-            string addressMunicipality, string addressType, string addressText,
-            string addressRegion, string addressPlace)
+        private void SetClient(string firstName, string lastName, string surrName,
+            string email, string egn, string phone)
         {
             client.ClientEmail = email;
             client.ClientName = firstName;
@@ -134,12 +134,25 @@ namespace PersonalFinances
             client.ClientEgn = egn;
             client.ClientPhone = phone;
             client.ClientSurname = surrName;
-            address.AddressPcode = addressPCode;
-            address.AddressPlace = addressPlace;
-            address.AddressRegion = addressRegion;
-            address.AddressText = addressText;
-            address.AddressType = addressType;
-            address.AddresMunicipality = addressMunicipality;
+        }
+
+        private void SetAddress(ref Address privateAddress, ref Address homeAddress)
+        {
+            //Home address fields
+            homeAddress.AddressType = "H";
+            homeAddress.AddressPlace = textBoxAddressHPlace.Text;
+            homeAddress.AddressRegion = textBoxAddressHRegion.Text;
+            homeAddress.AddressText = textBoxAddressHText.Text;
+            homeAddress.AddressPcode = textBoxAddressHPostCode.Text;
+            homeAddress.AddresMunicipality = textBoxAddressHMunicipality.Text;
+
+            // Private Adddress fields
+            privateAddress.AddressType = "P";
+            privateAddress.AddressPlace = textBoxAddressPPlace.Text;
+            privateAddress.AddressRegion = textBoxAddressPRegion.Text;
+            privateAddress.AddressText = textBoxAddressPText.Text;
+            privateAddress.AddressPcode = textBoxAddressPPostCode.Text;
+            privateAddress.AddresMunicipality = textBoxAddressPMunicipality.Text;
         }
     }
 }

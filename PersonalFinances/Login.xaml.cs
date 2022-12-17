@@ -19,58 +19,6 @@ namespace PersonalFinances
 
         Register registration = new();
         PersonalFinancesDBContext context = new();
-        private void NextTry(object sender, RoutedEventArgs e)
-        {
-            if (textBoxEmail.Text.Length == 0)
-            {
-                errormessage.Text = "Enter an email.";
-                textBoxEmail.Focus();
-            }
-            else if (!Regex.IsMatch(textBoxEmail.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
-            {
-                errormessage.Text = "Enter a valid email.";
-                textBoxEmail.Select(0, textBoxEmail.Text.Length);
-                textBoxEmail.Focus();
-            }
-            else
-            {
-                var email = textBoxEmail.Text;
-                var egn = egnBox.Password;
-                if (context.Clients.Any(u => u.ClientEgn == egn && u.ClientEmail == email))
-                {
-                    var successfullLoginMessage = "You have login succeffullly";
-                    var mainWindow = new MainWindow(successfullLoginMessage);
-                    mainWindow.Show();
-                    this.Close();
-                }
-                else
-                {
-                    errormessage.Text = "Sorry! Please enter existing emailid/password.";
-                }
-
-
-                //SqlConnection con = new SqlConnection("Data Source=TESTPURU;Initial Catalog=Data;User ID=sa;Password=wintellect");
-                //con.Open();
-                //SqlCommand cmd = new SqlCommand("Select * from Registration where Email='" + email + "'  and password='" + password + "'", con);
-                //cmd.CommandType = CommandType.Text;
-                //SqlDataAdapter adapter = new SqlDataAdapter();
-                //adapter.SelectCommand = cmd;
-                //DataSet dataSet = new DataSet();
-                //adapter.Fill(dataSet);
-                //if (dataSet.Tables[0].Rows.Count > 0)
-                //{
-                //    string username = dataSet.Tables[0].Rows[0]["FirstName"].ToString() + " " + dataSet.Tables[0].Rows[0]["LastName"].ToString();
-                //    welcome.TextBlockName.Text = username;//Sending value from one form to another form.  
-                //    welcome.Show();
-                //    Close();
-                //}
-                //else
-                //{
-                //    errormessage.Text = "Sorry! Please enter existing emailid/password.";
-                //}
-                //con.Close();
-            }
-        }
         private void buttonRegister_Click(object sender, RoutedEventArgs e)
         {
             registration.Show();
@@ -98,13 +46,13 @@ namespace PersonalFinances
                 {
                     var successfullLoginMessage = "You have login succeffully";
                     var mainWindow = new MainWindow(successfullLoginMessage);
-                    Global.client = context.Clients.FirstOrDefault((u => u.ClientEgn == egn && u.ClientEmail == email));
+                    Global.client = context.Clients.FirstOrDefault(u => u.ClientEgn == egn && u.ClientEmail == email);
                     mainWindow.Show();
                     this.Close();
                 }
                 else
                 {
-                    errormessage.Text = "Sorry! Please enter existing emailid/password.";
+                    errormessage.Text = "Sorry! Please enter existing email/EGN.";
                 }
             }
         }
