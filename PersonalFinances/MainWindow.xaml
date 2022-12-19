@@ -23,17 +23,17 @@
             <Menu.BitmapEffect>
                 <DropShadowBitmapEffect />
             </Menu.BitmapEffect>
-            <MenuItem Header="Add Dossier" Click="AddDossier_Click" Foreground="LightGreen" Height="30">
+            <MenuItem x:Name="addDossier" Header="Add Dossier" Click="AddDossier_Click" Foreground="LightGreen" Height="30">
                 <MenuItem.Icon>
                     <Image Source="add.png" Width="20" Height="20" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Search Dossier" Foreground="LightYellow" FontSize="16" Click="SearchDossier_Click">
+            <MenuItem x:Name="searchDossier" Header="Search Dossier" Foreground="LightYellow" FontSize="16" Click="SearchDossier_Click">
                 <MenuItem.Icon>
                     <Image Source="dossier.png" Width="20" Height="20" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Search Client" Foreground="LightCoral" FontSize="16" Click="SearchClient_Click">
+            <MenuItem x:Name="searchClient" Header="Search Client" Foreground="LightCoral" FontSize="16" Click="SearchClient_Click">
                 <MenuItem.Icon>
                     <Image Source="client.png" Width="20" Height="20" />
                 </MenuItem.Icon>
@@ -41,7 +41,7 @@
                     <ImageBrush ImageSource="" Stretch="Fill" />
                 </MenuItem.Background>-->
             </MenuItem>
-            <MenuItem Header="Login" Foreground="LightCyan" FontSize="16" Click="Login_Click">
+            <MenuItem x:Name="login" Header="Login" Foreground="LightCyan" FontSize="16" Click="Login_Click">
                 <MenuItem.Icon>
                     <Image Source="user.png" Width="20" Height="20" />
                 </MenuItem.Icon>

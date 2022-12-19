@@ -25,14 +25,14 @@ namespace PersonalFinances
         private Dossier dossier;
         private Client client;
         private PersonalFinancesDBContext context;
+        private static Login Login = new();
         public Register()
         {
             InitializeComponent();
         }
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            var login = new Login();
-            login.Show();
+            Login.Show();
         }
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
@@ -61,6 +61,7 @@ namespace PersonalFinances
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Login.Show();
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)

@@ -38,7 +38,7 @@ namespace PersonalFinances
             var Year = 0m;
             var Status = statusTextBox.Text == null ? "" : statusTextBox.Text;
             Client Client = context.Clients.Where(c => c.ClientEgn == ClientData).FirstOrDefault();
-             if (Decimal.TryParse(numberTextBox.Text, out Number) || Decimal.TryParse(yearTextBox.Text, out Year))
+            if (Decimal.TryParse(numberTextBox.Text, out Number) || Decimal.TryParse(yearTextBox.Text, out Year))
             {
                 if (Client == null)
                 {
