@@ -26,34 +26,94 @@ namespace PersonalFinances
         }
         PersonalFinancesDBContext context = new();
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //    var searchText = searchTextBox.Text;
+        //    List<Client> clients = context.Clients.Where(c => c.ClientName == searchText || c.ClientEgn == searchText || c.ClientEmail == searchText || c.ClientPhone == searchText).ToList();
+        //    dataGridView.ItemsSource = clients;
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var searchText = searchTextBox.Text;
             var Number = 0m;
-            var ClientData = clientTextBox.Text == null ? "" : clientTextBox.Text;
+            var ClientData = searchTextBox.Text == null ? "" : searchTextBox.Text;
             var Year = 0m;
-            var Status = statusTextBox.Text == null ? "" : statusTextBox.Text;
+            var Status = searchTextBox.Text == null ? "" : searchTextBox.Text;
             Client Client = context.Clients.Where(c => c.ClientEgn == ClientData).FirstOrDefault();
-             if (Decimal.TryParse(numberTextBox.Text, out Number) || Decimal.TryParse(yearTextBox.Text, out Year))
+            if (Decimal.TryParse(searchTextBox.Text, out Number) || Decimal.TryParse(searchTextBox.Text, out Year))
             {
                 if (Client == null)
                 {
                     dataGridView.ItemsSource = context.Dossiers.Where(d => d.DossierNo == Number || d.DossierYear == Year || d.DossierStatus == Status).ToList();
-                } else
+                }
+                else
                 {
                     dataGridView.ItemsSource = context.Dossiers.Where(d => d.DossierNo == Number || d.ClientId == Client.ClientId || d.DossierYear == Year || d.DossierStatus == Status).ToList();
                 }
-            } 
-      
+            }
+
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dataGridView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (dataGridView.SelectedItems.Count > 0)
+            {
+                editButton.Visibility = Visibility.Visible;
+                Dossier dossier = dataGridView.SelectedItem as Dossier;
+                dossierNumber.Text = dossier.DossierNo.ToString();
+                year.Text = dossier.DossierYear.ToString();
+                status.Text = dossier.DossierStatus;
+            }
+        }
 
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            Dossier dossier = dataGridView.SelectedItem as Dossier;
+
+           if(dossierNumber.Text.Length == 0)
+            {
+                MessageBox.Show("Enter a dossier number.");
+                dossierNumber.Focus();
+            }
+
+            if (year.Text.Length == 0)
+            {
+                MessageBox.Show("Enter an year.");
+                year.Focus();
+            }
+
+            if (status.Text.Length == 0)
+            {
+                MessageBox.Show("Enter a status number.");
+                status.Focus();
+            }
+
+            var Number = 0m;
+            var Year = 0m;
+
+            if (Decimal.TryParse(dossierNumber.Text, out Number) && Decimal.TryParse(year.Text, out Year))
+            {
+                dossier.DossierNo = Number;
+                dossier.DossierYear = Year;
+                dossier.DossierStatus = status.Text;
+                context.Entry(dossier).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                context.SaveChanges();
+
+                MessageBox.Show("Update dossier information successfully.");
+                dataGridView.ItemsSource = new List<Dossier> { dossier };
+
+                dossierNumber.Text = "";
+                year.Text = "";
+                status.Text = "";
+                client.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Error while updating dossier information!");
+
+            }
         }
     }
 }

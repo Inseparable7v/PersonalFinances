@@ -17,44 +17,23 @@
                 <GradientStop Color="#FF0079FF" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Grid x:Name="grid" Grid.ColumnSpan="2" Width="800" Height="434" BindingGroup="{Binding DataContext, ElementName=grid}">
-            <TextBlock TextWrapping="Wrap" Height="23" Text="Номер:" Margin="10,5,724,406" Foreground="Black" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.462"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <TextBox x:Name="numberTextBox" TextWrapping="Wrap"  Height="23" Margin="90,5,380,407" TextChanged="TextBox_TextChanged" BorderBrush="Black" Width="330"/>
-            <TextBox x:Name="clientTextBox" TextWrapping="Wrap" Height="23" Margin="90,32,380,377" BorderBrush="Black" Width="330"/>
-            <TextBlock TextWrapping="Wrap" Height="23" Text="Клиент ЕГН:" Margin="0,35,693,376" Foreground="Black" FontSize="16" FontWeight="Bold" RenderTransformOrigin="-0.335,0.653"/>
-            <TextBox x:Name="yearTextBox" TextWrapping="Wrap" Height="23" Margin="90,62,380,347" BorderBrush="Black" Width="330"/>
-            <TextBlock TextWrapping="Wrap" Height="23" Text="Година:" Margin="8,63,726,348" Foreground="Black" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-0.535"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <TextBox x:Name="statusTextBox" TextWrapping="Wrap" Height="23" Margin="90,92,380,317" BorderBrush="Black" Width="330" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock TextWrapping="Wrap" Height="23" Margin="10,95,708,317" Foreground="Black" FontSize="16" FontWeight="Bold"><Run Language="bg-bg" Text="Статус:"/><LineBreak/><Run Language="bg-bg"/></TextBlock>
-            <Button Content="Search" RenderTransformOrigin="0.5,0.5" Margin="353,120,372,285" Click="Button_Click" Background="White" BorderBrush="Black">
+        <Grid x:Name="grid" Grid.ColumnSpan="2" Width="1080" Height="480" BindingGroup="{Binding DataContext, ElementName=grid}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="359*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="searchTextBox" TextWrapping="Wrap" Height="19" Margin="540,50,0,0" BorderBrush="Black" Width="240" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Content="Search" RenderTransformOrigin="0.5,0.5" Margin="482,49,545,411" Click="Button_Click" Background="White" BorderBrush="Black" Width="50" Height="20">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
-                        <RotateTransform Angle="0.425"/>
+                        <RotateTransform Angle="-0.695"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
-            <DataGrid x:Name="dataGridView" Height="275" Margin="0,159,0,0" BorderBrush="Black" SelectionChanged="DataGrid_SelectionChanged" IsSynchronizedWithCurrentItem="False" Width="800">
+            <DataGrid x:Name="dataGridView" Margin="359,74,297,73" BorderBrush="Black" IsSynchronizedWithCurrentItem="False" MouseDoubleClick="dataGridView_MouseDoubleClick" IsReadOnly="True">
                 <DataGrid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="White" Offset="0"/>
@@ -62,6 +41,17 @@
                     </LinearGradientBrush>
                 </DataGrid.Background>
             </DataGrid>
+            <TextBox x:Name="dossierNumber" TextWrapping="Wrap" Margin="10,74,947,386" Width="120" Height="20"/>
+            <TextBox x:Name="client" TextWrapping="Wrap" Margin="177,74,780,386" Width="120" Height="20"/>
+            <TextBox x:Name="year" TextWrapping="Wrap" Margin="10,121,947,339" Width="120" Height="20"/>
+            <TextBox x:Name="status" TextWrapping="Wrap" Margin="177,121,780,339" Width="120" Height="20"/>
+
+            <Label x:Name="textDossierNumber" Content="Dossier Number" Margin="10,49,947,398" Width="120"/>
+            <Label x:Name="textClient" Content="Client"  Margin="177,50,780,397" Width="120"/>
+            <Label x:Name="textYear" Content="Year" Margin="10,98,947,349" Width="120"/>
+            <Label x:Name="textStatus" Content="Status" Margin="177,99,780,348" Width="120"/>
+
+            <Button x:Name="editButton" Content="Edit" Margin="10,215,967,240" Click="editButton_Click" Visibility="Hidden"/>
         </Grid>
 
     </Grid>
