@@ -26,6 +26,12 @@ namespace PersonalFinances
         public MainWindow()
         {
             InitializeComponent();
+            if(Global.client == null)
+            {
+                searchClient.Visibility = Visibility.Hidden;
+                searchDossier.Visibility = Visibility.Hidden;
+                addDossier.Visibility = Visibility.Hidden;
+            }
         }
 
         public MainWindow(string message) : base()
@@ -38,6 +44,7 @@ namespace PersonalFinances
         {
             var login = new Login();
             login.Show();
+            this.Close();
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
